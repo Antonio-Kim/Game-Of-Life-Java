@@ -37,7 +37,7 @@ public class GamePanel extends JPanel {
             }
         });
 
-        Executors.newScheduledThreadPool(1).scheduleAtFixedRate(()->next(), 500, 500, TimeUnit.MILLISECONDS);
+        Executors.newScheduledThreadPool(1).scheduleAtFixedRate(()->next(), 300, 300, TimeUnit.MILLISECONDS);
     }
 
     // Paint Component allows users to draw

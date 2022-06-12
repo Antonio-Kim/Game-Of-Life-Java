@@ -33,6 +33,10 @@ public class World {
         grid[row][col] = status;
     }
 
+    public boolean getStatus(int row, int col) {
+        return grid[row][col];
+    }
+
     public void randomize() {
         Random random = new Random();
         for (int i = 0; i < (rows * columns) / 10; i++) {
@@ -89,16 +93,21 @@ public class World {
                 If neighbouring cell count == 2, don't do anything
                  */
                 boolean status = false;
+                boolean isLiving = getStatus(row, col);
 
-                if (neighbours < 2)
-                    status = false;
-                else if (neighbours > 3)
-                    status = false;
-                else if (neighbours == 3)
-                    status = true;
-                else if (neighbours == 2)
-                    status = getCell(row, col);
-
+                if (isLiving) {
+                    if (neighbours < 2)
+                        status = false;
+                    else if (neighbours > 3)
+                        status = false;
+                    else if (neighbours == 3)
+                        status = true;
+                    else if (neighbours == 2)
+                        status = getCell(row, col);
+                } else {
+                    if (neighbours == 3)
+                        status = true;
+                }
                 buffer[row][col] = status;
             }
         }
