@@ -1,4 +1,6 @@
-package application;
+package gui;
+
+import model.World;
 
 import javax.swing.JPanel;
 import java.awt.*;
@@ -23,6 +25,13 @@ public class GamePanel extends JPanel {
         int width = getWidth();
         int height = getHeight();
 
+        int rows = (height - 2 * topBottomMargin) / CELLSIZE;
+        int columns = (width - 2 * leftRightMargin) / CELLSIZE;
+
+        World world = new World(rows, columns);
+        world.setCell(0,0,true);
+        world.setCell(2,1,true);
+
         leftRightMargin = ((width % CELLSIZE) + 50) / 2;
         topBottomMargin = ((height % CELLSIZE) + 50) / 2;
 
@@ -30,6 +39,13 @@ public class GamePanel extends JPanel {
         g2.fillRect(0, 0, width, height);
 
         drawGrid(g2, width, height);
+
+        for (int col = 0; col < columns; col++) {
+            for (int row = 0; row < rows; row++) {
+                boolean status = world.getCell(row, col);
+                filLCell(g2, row, col, status);
+            }
+        }
     }
 
     private void filLCell(Graphics2D g2, int row, int col, boolean status) {
