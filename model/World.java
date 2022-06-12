@@ -1,5 +1,8 @@
 package model;
 
+import java.util.Arrays;
+import java.util.Random;
+
 public class World {
     private int rows;
     private int columns;
@@ -26,5 +29,21 @@ public class World {
 
     public void setCell(int row, int col, boolean status) {
         grid[row][col] = status;
+    }
+
+    public void randomize() {
+        Random random = new Random();
+        for (int i = 0; i < (rows*columns) / 10 ; i++) {
+            int row = random.nextInt(rows);
+            int col = random.nextInt(columns);
+
+            setCell(row, col, true);
+        }
+    }
+
+    public void clear() {
+        for (int row = 0; row < rows; row++) {
+            Arrays.fill(grid[row], false);
+        }
     }
 }

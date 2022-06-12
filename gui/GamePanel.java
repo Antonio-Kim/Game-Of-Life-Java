@@ -4,6 +4,8 @@ import model.World;
 
 import javax.swing.JPanel;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -32,6 +34,7 @@ public class GamePanel extends JPanel {
                 repaint();
             }
         });
+
     }
 
     // Paint Component allows users to draw
@@ -85,5 +88,15 @@ public class GamePanel extends JPanel {
             g2.drawLine(leftRightMargin, j, width-leftRightMargin, j);
         }
 
+    }
+
+    public void randomize() {
+        world.randomize();
+        repaint();
+    }
+
+    public void clear() {
+        world.clear();
+        repaint();
     }
 }
