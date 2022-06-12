@@ -19,7 +19,7 @@ public class MainFrame extends JFrame {
 
                 switch (code) {
                     case 32:
-                        System.out.println("spacebar");
+                        gamePanel.next();
                         break;
                     case 8:
                         gamePanel.clear();

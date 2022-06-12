@@ -10,7 +10,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class GamePanel extends JPanel {
-    private final static int CELLSIZE = 50;
+    private final static int CELLSIZE = 10;
     private final static Color backgroundColor = Color.BLACK;
     private final static Color foregroundColor = Color.GREEN;
     private final static Color gridColor = Color.GRAY;
@@ -50,6 +50,7 @@ public class GamePanel extends JPanel {
         if (world == null) {
             world = new World(rows, columns);
         }
+
 
         leftRightMargin = ((width % CELLSIZE) + 50) / 2;
         topBottomMargin = ((height % CELLSIZE) + 50) / 2;
@@ -97,6 +98,11 @@ public class GamePanel extends JPanel {
 
     public void clear() {
         world.clear();
+        repaint();
+    }
+
+    public void next() {
+        world.next();
         repaint();
     }
 }
