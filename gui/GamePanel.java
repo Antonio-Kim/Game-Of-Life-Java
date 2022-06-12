@@ -8,6 +8,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class GamePanel extends JPanel {
     private final static int CELLSIZE = 10;
@@ -35,6 +37,7 @@ public class GamePanel extends JPanel {
             }
         });
 
+        Executors.newScheduledThreadPool(1).scheduleAtFixedRate(()->next(), 500, 500, TimeUnit.MILLISECONDS);
     }
 
     // Paint Component allows users to draw
@@ -49,6 +52,11 @@ public class GamePanel extends JPanel {
 
         if (world == null) {
             world = new World(rows, columns);
+        }
+        else {
+            if (world.getRows () != rows || world.getColumns() != columns) {
+                world = new World(rows, columns);
+            }
         }
 
 
