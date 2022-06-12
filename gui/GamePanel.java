@@ -4,18 +4,34 @@ import model.World;
 
 import javax.swing.JPanel;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class GamePanel extends JPanel {
     private final static int CELLSIZE = 50;
     private final static Color backgroundColor = Color.BLACK;
     private final static Color foregroundColor = Color.GREEN;
     private final static Color gridColor = Color.GRAY;
-
+    private World world;
     private int topBottomMargin;
     private int leftRightMargin;
 
     public GamePanel() {
-        setBackground(Color.RED);
+        addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                int row = (e.getY() - topBottomMargin) / CELLSIZE;
+                int col = (e.getX() - leftRightMargin) / CELLSIZE;
+
+                if ( row >= world.getRows() || col >= world.getColumns()) {
+                    return;
+                }
+
+                boolean status = world.getCell(row, col);
+                world.setCell(row, col, !status);
+
+                repaint();
+            }
+        });
     }
 
     // Paint Component allows users to draw
@@ -28,9 +44,9 @@ public class GamePanel extends JPanel {
         int rows = (height - 2 * topBottomMargin) / CELLSIZE;
         int columns = (width - 2 * leftRightMargin) / CELLSIZE;
 
-        World world = new World(rows, columns);
-        world.setCell(0,0,true);
-        world.setCell(2,1,true);
+        if (world == null) {
+            world = new World(rows, columns);
+        }
 
         leftRightMargin = ((width % CELLSIZE) + 50) / 2;
         topBottomMargin = ((height % CELLSIZE) + 50) / 2;

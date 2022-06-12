@@ -12,6 +12,14 @@ public class World {
         grid = new boolean[rows][columns];
     }
 
+    public int getRows() {
+        return rows;
+    }
+
+    public int getColumns() {
+        return columns;
+    }
+
     public boolean getCell(int row, int col) {
         return grid[row][col];
     }
