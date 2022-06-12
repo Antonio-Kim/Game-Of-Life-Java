@@ -7,6 +7,6 @@ public class MainFrame extends JFrame {
         super("Game of Life");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        setVisible(true);
     }
 }
