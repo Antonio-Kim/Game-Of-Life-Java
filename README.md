@@ -17,4 +17,4 @@ on GamePanel.java, with *CELLSIZE*. Changing the window size will restart the ga
 ---
 ### Future consideration
 - Change to JavaFX instead of Java Swing
-- Add UI panel so that user change settings 
+- Add UI panel so that user can change settings interactively
